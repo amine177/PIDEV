@@ -91,7 +91,7 @@ class BlogController extends Controller
                return $object->getCommentaires();
            });
            $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
-           $data = $serializer->normalize($article, null, ['attributes' => ['id', 'titre', 'texte', 'commentaires']]);
+           $data = $serializer->normalize($article, null, ['attributes' => ['id', 'titre', 'texte',  'auteur', 'auteurN', 'created', 'commentaires', 'tags']]);
            return new JsonResponse($data);
         }
         else
@@ -210,7 +210,7 @@ class BlogController extends Controller
     public function listeArticleAction(Request $request) {
 
 
-        if (!$request->isXmlHttpRequest() && $request->get('rech') != 1) {
+        if (!$request->isXmlHttpRequest() && $request->get('all') == 1) {
             $em = $this->get('doctrine.orm.entity_manager');
             $dql = "SELECT a FROM EntiteBundle:Article a";
             $query = $em->createQuery($dql);
@@ -223,7 +223,7 @@ class BlogController extends Controller
             );
             //if ($this->getUser())
             //    echo($this->getUser()->getUsername());
-            if ($request->get('mobile') == 1) {
+            if ($request->get('mobile') == 1 && $request->get('all') == 1) {
                 $articles = $query->getResult();
                 if (sizeof($articles)) {
                     $normalizer = new ObjectNormalizer();
@@ -231,11 +231,11 @@ class BlogController extends Controller
                         return $object->getCommentaires();
                     });
                     $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
-                    $data = $serializer->normalize($articles, null, ['attributes' => ['id', 'titre', 'texte', 'commentaires']]);
+                    $data = $serializer->normalize($articles, null, ['attributes' => ['id', 'titre', 'texte',  'auteur', 'auteurN', 'created', 'commentaires', 'tags' ]]);
                     return new JsonResponse($data);
                 }
                 else
-                    return new JsonResponse("Empty");
+                    return new JsonResponse(0);
             }
 
             else
@@ -282,11 +282,11 @@ class BlogController extends Controller
                          return $object->getCommentaires();
                      });
                      $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
-                     $data = $serializer->normalize($articles, null, ['attributes' => ['id', 'titre', 'texte', 'commentaires']]);
+                     $data = $serializer->normalize($articles, null, ['attributes' => ['id', 'titre', 'texte',  'auteur', 'auteurN', 'created', 'commentaires', 'tags' ]]);
                      return new JsonResponse($data);
                  }
                  else
-                     return new JsonResponse("Empty");
+                     return new JsonResponse(0);
              }
              else {
                  $paginator = $this->get('knp_paginator');
