@@ -53,16 +53,16 @@ class Utilisateur extends User
     private $latitude;
 
     /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="utilisateur")
      */
     private $experiences;
     /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="experience")
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="utilisateur")
      */
     private $revues;
 
     /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Utilisateur", mappedBy="utilisateur")
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Evenements", mappedBy="utilisateur")
      */
     private $evenements;
     /**
