@@ -1,0 +1,85 @@
+<?php
+
+namespace EntiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Experience
+ *
+ * @ORM\Table(name="experience", indexes={@ORM\Index(name="IDX_590C103FB88E14F", columns={"utilisateur_id"}), @ORM\Index(name="IDX_590C103FF631228", columns={"etablissement_id"})})
+ * @ORM\Entity
+ */
+class Experience
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=false)
+     */
+    private $utilisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Etablissement")
+     * @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id", nullable=false)
+     */
+    private $etablissement;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * @param \Utilisateur $utilisateur
+     */
+    public function setUtilisateur($utilisateur)
+    {
+        $this->utilisateur = $utilisateur;
+    }
+
+    /**
+     * @return \Etablissement
+     */
+    public function getEtablissement()
+    {
+        return $this->etablissement;
+    }
+
+    /**
+     * @param \Etablissement $etablissement
+     */
+    public function setEtablissement($etablissement)
+    {
+        $this->etablissement = $etablissement;
+    }
+
+
+}

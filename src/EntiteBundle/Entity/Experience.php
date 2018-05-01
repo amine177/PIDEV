@@ -22,24 +22,17 @@ class Experience
     private $id;
 
     /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=false)
      */
     private $utilisateur;
 
     /**
-     * @var \Etablissement
-     *
-     * @ORM\ManyToOne(targetEntity="Etablissement")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Etablissement")
+     * @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id", nullable=false)
      */
     private $etablissement;
+
 
 
 }
