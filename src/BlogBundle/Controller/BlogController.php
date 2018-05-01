@@ -82,6 +82,9 @@ class BlogController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentaire);
             $em->flush();
+            if ($request->get('mobile') == 1) {
+                return new JsonResponse($commentaire->getId());
+            }
         }
 
 
@@ -123,7 +126,7 @@ class BlogController extends Controller
             $em->persist($commentaire);
             $em->flush();
             if ($request->get('mobile') == 1)
-                return new JsonResponse("Success");
+                return new JsonResponse(1);
             else
                 return $this->redirectToRoute('blog_lireArticle', ["id"=>$request->get('articleid')]);
 
@@ -210,7 +213,7 @@ class BlogController extends Controller
     public function listeArticleAction(Request $request) {
 
 
-        if (!$request->isXmlHttpRequest() && $request->get('all') == 1) {
+        if ((!$request->isXmlHttpRequest() && $request->get('rech') == null) ||  $request->get('all') == 1) {
             $em = $this->get('doctrine.orm.entity_manager');
             $dql = "SELECT a FROM EntiteBundle:Article a";
             $query = $em->createQuery($dql);
@@ -243,7 +246,7 @@ class BlogController extends Controller
                 'pagination' => $pagination
             ));
         }
-        else if ($request->isXmlHttpRequest() || $request->get('rech') == 1) {
+        if ($request->get('rech') == 1 || $request->isXmlHttpRequest()) {
             $em = $this->get('doctrine.orm.entity_manager');
             $query = null;
 
@@ -274,7 +277,7 @@ class BlogController extends Controller
 
 
 
-             if ($request->get('mobile') == 1) {
+             if ( ($request->get('text') != null || $request->get('tag') != null ) && $request->get('mobile') == 1) {
                  $articles = $query->getResult();
                  if (sizeof($articles) > 0) {
                      $normalizer = new ObjectNormalizer();
