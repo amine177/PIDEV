@@ -67,7 +67,7 @@ class Utilisateur extends User
     private $evenements;
     /**
      * @ORM\OneToOne(targetEntity="EntiteBundle\Entity\Etablissement", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(fieldName="etablissement_id",nullable=true)
      */
     private $etablissement;
     /**

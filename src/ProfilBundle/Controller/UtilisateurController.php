@@ -74,9 +74,11 @@ class UtilisateurController extends Controller
     public function allAction()
     {
         $em= $this->getDoctrine()->getManager();
+        $normalizer=new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
         $utilisateurs=$em->getRepository("EntiteBundle:Utilisateur")
             ->findAll();
-        $serializer=new Serializer([new ObjectNormalizer()]);
+        $serializer=new Serializer([$normalizer]);
         $formatted=$serializer->normalize($utilisateurs);
         return new JsonResponse($formatted);
     }
