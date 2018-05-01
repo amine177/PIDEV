@@ -46,3 +46,15 @@ modifier_utilisateur:
 list_utilisateur:
     path:     /utilisateur/list
     defaults: { _controller: ProfilBundle:Utilisateur:list }
+all_Json_utilisateur:
+    path:     /utilisateur/alljson
+    defaults: { _controller: ProfilBundle:Utilisateur:all }
+all_Json_gouvernorat:
+    path:     /gouvernorat/alljson
+    defaults: { _controller: ProfilBundle:Gouvernorat:alljson }
+all_Json_ville:
+    path:     /ville/alljson
+    defaults: { _controller: ProfilBundle:Ville:alljson }
+alljson_etab:
+    path:     /etablissement/alljson
+    defaults: { _controller: ProfilBundle:Etablissement:alljson }
