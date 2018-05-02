@@ -199,11 +199,14 @@ class BlogController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $repo = $this->getDoctrine()->getRepository(CommentaireB::class);
+        if ($repo->find($id) != null)
         $articleid = $repo->find($id)->getArticle()->getId();
+        else
+            return new JsonResponse(0);
         $em->remove($repo->find($id));
         $em->flush();
         if ($request->get('mobile') == 1)
-            return new JsonResponse("Success");
+            return new JsonResponse(1);
         else
             return $this->redirectToRoute("blog_lireArticle", ["id"=>$articleid]);
 
