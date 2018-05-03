@@ -4,6 +4,7 @@ namespace ProfilBundle\Controller;
 
 use EntiteBundle\Entity\Utilisateur;
 use EntiteBundle\Form\UtilisateurType;
+use Symfony\Component\ExpressionLanguage\Tests\Node\Obj;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -77,7 +78,12 @@ class UtilisateurController extends Controller
 
         $utilisateurs=$em->getRepository("EntiteBundle:Utilisateur")
             ->findAll();
-        $serializer=new Serializer([new ObjectNormalizer()]);
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return null;
+        });
+        $serializer=new Serializer([$normalizer]);
         $formatted=$serializer->normalize($utilisateurs);
         return new JsonResponse($formatted);
     }
