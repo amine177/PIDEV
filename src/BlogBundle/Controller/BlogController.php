@@ -222,12 +222,14 @@ class BlogController extends Controller
             $dql = "SELECT a FROM EntiteBundle:Article a";
             $query = $em->createQuery($dql);
 
-            $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate(
-                $query,
-                $request->query->getInt('page', 1),
-                3
-            );
+            if (!$request->get('all') == 1) {
+                $paginator = $this->get('knp_paginator');
+                $pagination = $paginator->paginate(
+                    $query,
+                    $request->query->getInt('page', 1),
+                    3
+                );
+            }
             //if ($this->getUser())
             //    echo($this->getUser()->getUsername());
             if ($request->get('mobile') == 1 && $request->get('all') == 1) {
