@@ -9,6 +9,7 @@ use EntiteBundle\Entity\Article;
 use EntiteBundle\Entity\CommentaireB;
 use EntiteBundle\Entity\Tag;
 use FOS\UserBundle\Model\UserInterface;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -309,6 +310,17 @@ class BlogController extends Controller
 
 
         }
+    }
+
+    public function pdfAction(Request $request, $id) {
+
+        $repo = $this->getDoctrine()->getRepository('EntiteBundle:Article');
+        $article = $repo->find($id);
+        $html = "<h1>".$article->getTitre()."</h1>".$article->getTexte();
+        return new PdfResponse(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            'file.pdf'
+        );
     }
 
 

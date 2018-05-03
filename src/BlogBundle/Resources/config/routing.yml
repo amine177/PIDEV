@@ -31,3 +31,6 @@ blog_modifierCommentaire:
 blog_stat:
     path: /stats
     defaults: { _controller: BlogBundle:Blog:listeArticle }
+blog_pdf:
+    path: /pdf/{id}
+    defaults: { _controller: BlogBundle:Blog:pdf}

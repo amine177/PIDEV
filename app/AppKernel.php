@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new MapBundle\MapBundle(),
             new ReservationBundle\ReservationBundle(),
             new ExpAvisBundle\ExpAvisBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
