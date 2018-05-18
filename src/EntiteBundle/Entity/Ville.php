@@ -31,7 +31,7 @@ class Ville
     /**
      * @var \Gouvernorat
      *
-     * @ORM\ManyToOne(targetEntity="Gouvernorat")
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Gouvernorat",inversedBy="villes")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_gouvernorat", referencedColumnName="id")
      * })
