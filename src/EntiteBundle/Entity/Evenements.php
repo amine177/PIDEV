@@ -61,9 +61,9 @@ class Evenements
     private $date;
 
     /**
-     * @var date
+     * @var string
      *
-     * @ORM\Column(name="dateF", type="date")
+     * @ORM\Column(name="dateF", type="string" , length=255)
      */
     private $dateF;
 

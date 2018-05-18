@@ -33,7 +33,7 @@ class EvenementsController extends Controller
             $em=$this->getDoctrine()->getManager();
             $em->persist($ev);
             $em->flush();
-            $this->redirectToRoute('affiche');
+            $this->redirectToRoute('aff');
 
         }
 
