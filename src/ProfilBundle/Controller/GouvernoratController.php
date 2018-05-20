@@ -9,6 +9,16 @@ use Symfony\Component\Serializer\Serializer;
 
 class GouvernoratController extends Controller
 {
+    public function allAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $gouvernorats = $em->getRepository('EntiteBundle:Gouvernorat')->findAll();
+
+        return $this->render('@Profil/Gouvernorat/all.html.twig', array(
+            'gouvernorats' => $gouvernorats,
+        ));
+    }
     public function alljsonAction()
     {
         $em= $this->getDoctrine()->getManager();
