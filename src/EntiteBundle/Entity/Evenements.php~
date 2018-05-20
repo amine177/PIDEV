@@ -61,9 +61,9 @@ class Evenements
     private $date;
 
     /**
-     * @var date
+     * @var string
      *
-     * @ORM\Column(name="dateF", type="date")
+     * @ORM\Column(name="dateF", type="string")
      */
     private $dateF;
 
@@ -97,11 +97,20 @@ class Evenements
     private $brochure;
 
     /**
-     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="Evenements")
+     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="eve")
      */
     private $commentaire;
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="evenements")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=true)
+     */
+    private $utilisateur;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=250, nullable=false)
+     */
+    private $type;
     /**
      * Get id
      *
@@ -280,29 +289,7 @@ class Evenements
         return $this->brochure;
     }
 
-    /**
-     * Set dateF.
-     *
-     * @param \DateTime $dateF
-     *
-     * @return Evenements
-     */
-    public function setDateF($dateF)
-    {
-        $this->dateF = $dateF;
 
-        return $this;
-    }
-
-    /**
-     * Get dateF.
-     *
-     * @return \DateTime
-     */
-    public function getDateF()
-    {
-        return $this->dateF;
-    }
 
     /**
      * Set adresse.
@@ -350,5 +337,72 @@ class Evenements
     public function getTel()
     {
         return $this->tel;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commentaire.
+     *
+     * @param \EvenementBundle\Entity\CommentaireE $commentaire
+     *
+     * @return Evenements
+     */
+    public function addCommentaire(\EvenementBundle\Entity\CommentaireE $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire.
+     *
+     * @param \EvenementBundle\Entity\CommentaireE $commentaire
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommentaire(\EvenementBundle\Entity\CommentaireE $commentaire)
+    {
+        return $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set utilisateur.
+     *
+     * @param \EntiteBundle\Entity\Utilisateur|null $utilisateur
+     *
+     * @return Evenements
+     */
+    public function setUtilisateur(\EntiteBundle\Entity\Utilisateur $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur.
+     *
+     * @return \EntiteBundle\Entity\Utilisateur|null
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }

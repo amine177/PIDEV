@@ -25,6 +25,8 @@ class EtablissementController extends Controller
             $file->move($this->getParameter('image_directory'),$fileName);
             $etablissement->setPhoto($fileName);
             $em=$this->getDoctrine()->getManager();
+            $etablissement->setEstActive(true);
+            $etablissement->setNote(1.0);
             $this->getUser()->setEtablissement($etablissement);
             $em->persist($etablissement);
             $em->flush();
@@ -52,6 +54,7 @@ class EtablissementController extends Controller
 
     public function listAllAction()
     {
+        $this->getUser();
         $em= $this->getDoctrine()->getManager();
         $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll(['note'=> 'DESC']);
         return $this->render('@Profil/Etablissement/all.html.twig', array(
