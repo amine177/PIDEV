@@ -58,3 +58,6 @@ all_Json_ville:
 alljson_etab:
     path:     /etablissement/alljson
     defaults: { _controller: ProfilBundle:Etablissement:alljson }
+search_etab:
+    path:     /profile/etablissement/search
+    defaults: { _controller: ProfilBundle:Etablissement:rechercheAjax }

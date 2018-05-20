@@ -2,6 +2,7 @@
 
 namespace ProfilBundle\Controller;
 
+use Doctrine\ORM\ORMException;
 use EntiteBundle\Entity\Etablissement;
 use EntiteBundle\Entity\Photo;
 use EntiteBundle\Form\EtablissementType;
@@ -87,6 +88,29 @@ class EtablissementController extends Controller
         }
         return $this->render('@Profil/Etablissement/ajouter.html.twig', array(
             "form"=>$form->createView()
+        ));
+    }
+
+    //fonction recherche avc ajax
+    public function rechercheAjaxAction(Request $request)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $marque=$request->get('q');
+            $em= $this->getDoctrine()->getManager();
+            try {
+                $etablissements = $em->getRepository("EntiteBundle:Etablissement")->searchByName($marque);
+            } catch (ORMException $e) {
+            }
+            //etape 1: initialiser le serializer
+            $serializer=new Serializer(array(new ObjectNormalizer()));
+            //etape 2 : transformation liste des objets
+            $data=$serializer->normalize($etablissements);
+            //etape 3 : encodage format JSON
+            return new JsonResponse($data);
+        }
+        return $this->render('ProfilBundle:Etablissement:all.html.twig', array(
+
         ));
     }
     public function coordonnesMap(){
