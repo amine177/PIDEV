@@ -113,7 +113,7 @@ class Evenements
      *
      * @ORM\Column(name="type", type="string", length=250, nullable=false)
      */
-    
+
     private $type;
     /**
      * Get id
