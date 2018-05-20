@@ -1,22 +1,15 @@
-{% extends "::base.html.twig" %}
+{% extends "@Blog/Default/template.html.twig" %}
 
-{% block title %}ParcBundle:Voiture:read{% endblock %}
+{% block title %}ProfilBundle:Utilisateur:all {% endblock %}
 
-{% block body %}
-    <center><h1>Welcome to the Voiture:read page</h1>
+{% block content %}
+    <center><h1>List des utilisateurs</h1>
 
         <table border="3">
-            <tr style="color: #0011f5">
-                <td>id</td>
-                <td>nom</td>
-                <td>villes</td>
-
+            <tr>
             </tr>
-            {% for voiture in gouvernorats  %}
-                <tr><td>{{  voiture.id}}</td>
-                    <td>{{  voiture.name }}</td>
-                    <td>{{  voiture.villes }}</td>
-                </tr>
+            {% for gouv in gouvernorats  %}
+
             {% endfor %}
         </table>
     </center>

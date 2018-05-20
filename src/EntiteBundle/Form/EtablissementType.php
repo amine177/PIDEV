@@ -2,6 +2,9 @@
 
 namespace EntiteBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use EntiteBundle\Repository\VilleRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -9,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
@@ -26,39 +32,18 @@ class EtablissementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
             ->add('nom')
             ->add('photo',FileType::class,array('data_class'=>null))
             ->add('adresse')
             ->add('description')
-            ->add('gouvernorat',ChoiceType::class,
-                array(
-                'choices' => array(
-                    'Ariana' => 'Ariana',
-                    'Béja' => 'Beja',
-                    'Ben Arous' => 'BenArous',
-                    'Bizerte' => 'Bizerte',
-                    'Gabès' => 'Gabes',
-                    'Gafsa' => 'Gafsa',
-                    'Jendouba' => 'Jendouba',
-                    'Kairouan' => 'Kairouan',
-                    'Kasserine' => 'Kasserine',
-                    'Kébili' => 'Kebili',
-                    'Le Kef' => 'LeKef',
-                    'Mahdia' => 'Mahdia',
-                    'La Manouba' => 'LaManouba',
-                    'Médenine' => 'Medenine',
-                    'Monastir' => 'Monastir',
-                    'Nabeul' => 'Nabeul',
-                    'Sfax' => 'Sfax',
-                    'Sidi Bouzid' => 'SidiBouzid',
-                    'Siliana' => 'Siliana',
-                    'Sousse' => 'Sousse',
-                    'Tataouine' => 'Tataouine',
-                    'Tozeur' => 'Tozeur',
-                    'Tunis' => 'Tunis',
-                    'Zaghouan' => 'Zaghouan'
-                )))
+            ->add('gouvernorat', EntityType::class, array(
+                'class' => 'EntiteBundle\Entity\Gouvernorat',
+                'choice_label' => 'name',
+                'multiple' => false
+            ))
             ->add('type',ChoiceType::class,
                 array(
                     'choices' => array(
@@ -67,17 +52,41 @@ class EtablissementType extends AbstractType
                         'Restaurant' => 'restaurant',
                         'Shopping' => 'shopping'
                     )))
-            ->add('ville',ChoiceType::class,
+            ->add('ville',EntityType::class,
                 array(
-                'choices'=>array('Ville'=>'Ville')
+                    'class' => 'EntiteBundle\Entity\Ville',
+                    'choice_label' => 'name',
+                    'multiple' => false,
+
             ))
-            ->add('note')
             ->add('horraire', TimeType::class)
+            ->add('horraireF', TimeType::class)
             ->add('longitude')
             ->add('latitude')
-            ->add('estActive')
             ->add('Enregistrer',SubmitType::class)
             -> setMethod('POST');
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+
+                $data = $event->getData();
+                $villes=array();
+                $gouv = $data-> getGouvernorat();
+                $villes = null === $gouv ? array() : $gouv->getVilles();
+                $names = array_map(function ($value) {
+                    return  $value['name'];
+                }, $villes);
+
+                $form->add('ville', EntityType::class,
+                    array(
+                        'class' => 'EntiteBundle\Entity\Ville',
+                        'multiple' => false,
+                        'choices'=>$names
+                ));
+            }
+        );
     }/**
      * {@inheritdoc}
      */
@@ -95,6 +104,8 @@ class EtablissementType extends AbstractType
     {
         return 'entitebundle_etablissement';
     }
+
+
 
 
 }

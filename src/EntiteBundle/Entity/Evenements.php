@@ -63,7 +63,9 @@ class Evenements
     /**
      * @var string
      *
+
      * @ORM\Column(name="dateF", type="string" , length=255)
+
      */
     private $dateF;
 
@@ -106,6 +108,13 @@ class Evenements
      */
     private $utilisateur;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=250, nullable=false)
+     */
+    
+    private $type;
     /**
      * Get id
      *
@@ -284,29 +293,7 @@ class Evenements
         return $this->brochure;
     }
 
-    /**
-     * Set dateF.
-     *
-     * @param \DateTime $dateF
-     *
-     * @return Evenements
-     */
-    public function setDateF($dateF)
-    {
-        $this->dateF = $dateF;
 
-        return $this;
-    }
-
-    /**
-     * Get dateF.
-     *
-     * @return \DateTime
-     */
-    public function getDateF()
-    {
-        return $this->dateF;
-    }
 
     /**
      * Set adresse.
@@ -421,5 +408,53 @@ class Evenements
     public function getUtilisateur()
     {
         return $this->utilisateur;
+    }
+
+    /**
+     * Set dateF.
+     *
+     * @param string $dateF
+     *
+     * @return Evenements
+     */
+    public function setDateF($dateF)
+    {
+        $this->dateF = $dateF;
+
+        return $this;
+    }
+
+    /**
+     * Get dateF.
+     *
+     * @return string
+     */
+    public function getDateF()
+    {
+        return $this->dateF;
+    }
+
+    /**
+     * Set type.
+     *
+     * @param string $type
+     *
+     * @return Evenements
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

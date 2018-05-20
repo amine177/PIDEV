@@ -94,5 +94,10 @@ class Ville
         $this->idGouvernorat = $idGouvernorat;
     }
 
+    public function __toString()
+    {
+        return $this->name." ".$this->idGouvernorat;
+    }
+
 
 }
