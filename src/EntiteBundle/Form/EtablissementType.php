@@ -15,6 +15,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class EtablissementType extends AbstractType
 {
     /**
+     * EtablissementType constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

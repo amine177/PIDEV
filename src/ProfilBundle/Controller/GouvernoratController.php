@@ -16,7 +16,7 @@ class GouvernoratController extends Controller
         $gouvernorats = $em->getRepository('EntiteBundle:Gouvernorat')->findAll();
 
         return $this->render('@Profil/Gouvernorat/all.html.twig', array(
-            'gouvernorats' => $gouvernorats,
+            'gouvernorats' => $gouvernorats
         ));
     }
     public function alljsonAction()

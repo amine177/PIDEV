@@ -66,47 +66,4 @@ class Gouvernorat
     {
         return $this->name;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->villes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add ville.
-     *
-     * @param \EntiteBundle\Entity\Ville $ville
-     *
-     * @return Gouvernorat
-     */
-    public function addVille(\EntiteBundle\Entity\Ville $ville)
-    {
-        $this->villes[] = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Remove ville.
-     *
-     * @param \EntiteBundle\Entity\Ville $ville
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeVille(\EntiteBundle\Entity\Ville $ville)
-    {
-        return $this->villes->removeElement($ville);
-    }
-
-    /**
-     * Get villes.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getVilles()
-    {
-        return $this->villes;
-    }
 }
