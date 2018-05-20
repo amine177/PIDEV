@@ -118,26 +118,16 @@ class EvenementsController extends Controller
         $ev=$em->getRepository(Evenements::class)->find($id);
 
 
-      //ajout commentaire
-        $m=new CommentaireE();
-        if($request->isMethod('POST')){
-            $m->setContenu($request->get('contenu'));
-            $m->setEve($ev);
-            $em->persist($m);
-            $em->flush();
-        }
 
-        //affiche commentaire
-        $c=$em->getRepository("EvenementBundle:CommentaireE")->findByeve($id);
 
-        //supprimer commentaire
+
 
 
 
 
         return $this->render('EvenementBundle:Evenements:detailEv.html.twig',array(
             'detail'=>$ev,
-            'commentaire'=>$c
+
         ));
     }
 
