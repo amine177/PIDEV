@@ -2,37 +2,72 @@
 
 
 {% block body %}
+    <div class="banner">
 
 <div class="w3l_banner_nav_right">
+
+    <section class="slider">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <div class="w3l_banner_nav_right_banner">
+                        <h3>Make your <span>food</span> with Spicy.</h3>
+                        <div class="more">
+                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="w3l_banner_nav_right_banner1" style="background:url({{ asset('images/2.jpg') }}) no-repeat 0px 0px;">
+                        <h3>Make your <span>food</span> with Spicy.</h3>
+                        <div class="more">
+                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- flexSlider -->
+
     <!-- events -->
     <div class="events">
         <h3>  Events</h3>
 
         <div class="events-bottom">
-            {% for evenements in evenements %}
-                <div class="col-md-12 events_bottom_left">
-                    <div class="col-md-4 events_bottom_left1">
 
+            {% for i in evenements  %}
+
+                <div class="col-md-6 events_bottom_left" id="kk">
+                    <div class="col-md-4 events_bottom_left1">
+                        <div class="events_bottom_left1_grid">
+                            <h4>{{ i.prix }}</h4>
+                            <p>Details</p>
+                        </div>
                     </div>
                     <div class="col-md-8 events_bottom_left2">
-                        <img src="{{ asset('template/images/' ~ evenements.brochure) }}" alt=" " class="img-responsive" style="height:200px ; width: 200px ; "/>
-                        <h4>{{ evenements.nom }}</h4>
+                        <img src="{{ asset('template/images/' ~ i.brochure) }}" alt=" " class="img-responsive" />
+                        <h4>{{ i.nom }}</h4>
                         <ul>
-                            <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{ evenements.date|date('d-m-y') }}</li>
-                            <li><i class="fa fa-user" aria-hidden="true"></i><a href="">Admin</a></li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{ i.date|date('d-m-y') }}</li>
+                            <li><i class="fa fa-user" aria-hidden="true"></i><a href="#">Admin</a></li>
                         </ul>
-                        <p>{{ evenements.description }}</p>
+                        <p>{{ i.description }}.</p>
                     </div>
                 </div>
+
+
+
             {% endfor %}
 
-            <!-- //events -->
         </div>
     </div>
 </div>
-
+    </div>
 
 {% endblock %}
-
 
 

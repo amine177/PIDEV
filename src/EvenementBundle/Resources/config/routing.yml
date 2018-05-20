@@ -6,11 +6,11 @@ ajout:
     path:     /ajout
     defaults: { _controller: EvenementBundle:Evenements:ajout }
 
-modifier:
+mod:
     path:     /modifier/{id}
     defaults: { _controller: EvenementBundle:Evenements:modifier }
 
-supprimer:
+s:
     path:     /supprimer/{id}
     defaults: { _controller: EvenementBundle:Evenements:Supprimer }
 
@@ -23,9 +23,9 @@ detail:
     path:     /detail/{id}
     defaults: { _controller: EvenementBundle:Evenements:detail }
 
-afficheu:
-    path:     /calendar
-    defaults: { _controller: EvenementBundle:Evenements:calendar }
+event:
+    path:     /mevent
+    defaults: { _controller: EvenementBundle:Evenements:mesevent }
     options:
      expose : true
 

@@ -16,7 +16,7 @@ class EvenementsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom')->add('description')->add('date')
-            ->add('Adresse')
+            ->add('adresse')
             ->add('brochure',FileType::class,array('data_class'=>null))
             ->add('Sauvgarder',SubmitType::class)
             -> setMethod('POST');

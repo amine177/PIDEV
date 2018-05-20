@@ -1,0 +1,52 @@
+{% extends 'base.html.twig'  %}
+
+
+{% block body %}
+<div class="banner">
+
+    <div class="w3l_banner_nav_right">
+
+
+
+        <!-- events -->
+        <div class="events">
+            <h3>  Events</h3>
+
+            <div class="events-bottom">
+
+                {% for i in evenements  %}
+
+                    <div class="col-md-6 events_bottom_left" id="kk">
+
+                        <div class="col-md-4 events_bottom_left1">
+                            <div class="events_bottom_left1_grid">
+                                <h4 ><a href="{{ path('s', {'id': i.id}) }}">Supprimer</a></h4>
+                            <p>    <a href="{{ path('mod', {'id': i.id}) }}">Modifier</a></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 events_bottom_left2">
+                            <img src="{{ asset('template/images/' ~ i.brochure) }}" alt=" " class="img-responsive" />
+                            <h4>{{ i.nom }}</h4>
+                            <ul>
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{ i.date|date('d-m-y') }}</li>
+                                <li><i class="fa fa-user" aria-hidden="true"></i><a href="#">Admin</a></li>
+                            </ul>
+                            <p>{{ i.description }}.</p>
+                        </div>
+
+
+
+                </div>
+
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+{% endblock body %}

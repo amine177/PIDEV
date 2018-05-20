@@ -20,7 +20,8 @@ class EvenementsController extends Controller
 
 
         $ev=new Evenements();
-
+        $user =$this->getUser();
+        $ev->setUtilisateur($user);
         $Form=$this->createForm(EvenementsType::class,$ev);
         $Form->handleRequest($request);
         if($Form->isValid()){
@@ -30,10 +31,13 @@ class EvenementsController extends Controller
             $fileName= md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('image_directory'),$fileName);
             $ev->setBrochure($fileName);
+
+
+
             $em=$this->getDoctrine()->getManager();
             $em->persist($ev);
             $em->flush();
-            $this->redirectToRoute('aff');
+           return $this->redirectToRoute('aff');
 
         }
 
@@ -61,7 +65,7 @@ class EvenementsController extends Controller
             $em=$this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
-            return $this->redirectToRoute('affiche');
+            return $this->redirectToRoute('event');
         }
 
         return $this->render('EvenementBundle:Evenements:modifier.html.twig', array(
@@ -76,10 +80,8 @@ class EvenementsController extends Controller
         $evenement=$em->getRepository('EntiteBundle:Evenements')->find($id);
         $em->remove($evenement);
         $em->flush();
-        $this->redirectToRoute('affiche');
-        return $this->render('EvenementBundle:Evenements:supprimer.html.twig', array(
-            // ...
-        ));
+        return $this->redirectToRoute('event');
+
     }
 
     //affichage des évenements
@@ -94,12 +96,15 @@ class EvenementsController extends Controller
 
     //calendrier des evenemnts
 
-    public function calendarAction()
+    public function meseventAction()
     {
+        $user =$this->getUser();
+
+        $em=$this->getDoctrine()->getManager();
+        $ev=$em->getRepository("EntiteBundle:Evenements")->findByutilisateur($user);
 
 
-
-        return $this->render('EvenementBundle:Evenements:calendar.html.twig', array(
+        return $this->render('EvenementBundle:Evenements:mesevent.html.twig', array( 'evenements'=>$ev
 
         ));
 
