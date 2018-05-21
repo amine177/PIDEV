@@ -21,10 +21,22 @@ class GouvernoratController extends Controller
     }
     public function alljsonAction()
     {
+//        $em= $this->getDoctrine()->getManager();
+//        $utilisateurs=$em->getRepository("EntiteBundle:Gouvernorat")
+//            ->findAll();
+//        $serializer=new Serializer([new ObjectNormalizer()]);
+//        $formatted=$serializer->normalize($utilisateurs);
+//        return new JsonResponse($formatted);
         $em= $this->getDoctrine()->getManager();
+
         $utilisateurs=$em->getRepository("EntiteBundle:Gouvernorat")
             ->findAll();
-        $serializer=new Serializer([new ObjectNormalizer()]);
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return null;
+        });
+        $serializer=new Serializer([$normalizer]);
         $formatted=$serializer->normalize($utilisateurs);
         return new JsonResponse($formatted);
     }
