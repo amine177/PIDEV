@@ -2,6 +2,7 @@
 
 namespace EntiteBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -31,34 +32,39 @@ class EtablissementType extends AbstractType
             ->add('photo',FileType::class,array('data_class'=>null))
             ->add('adresse')
             ->add('description')
-            ->add('gouvernorat',ChoiceType::class,
-                array(
-                'choices' => array(
-                    'Ariana' => 'Ariana',
-                    'Béja' => 'Beja',
-                    'Ben Arous' => 'BenArous',
-                    'Bizerte' => 'Bizerte',
-                    'Gabès' => 'Gabes',
-                    'Gafsa' => 'Gafsa',
-                    'Jendouba' => 'Jendouba',
-                    'Kairouan' => 'Kairouan',
-                    'Kasserine' => 'Kasserine',
-                    'Kébili' => 'Kebili',
-                    'Le Kef' => 'LeKef',
-                    'Mahdia' => 'Mahdia',
-                    'La Manouba' => 'LaManouba',
-                    'Médenine' => 'Medenine',
-                    'Monastir' => 'Monastir',
-                    'Nabeul' => 'Nabeul',
-                    'Sfax' => 'Sfax',
-                    'Sidi Bouzid' => 'SidiBouzid',
-                    'Siliana' => 'Siliana',
-                    'Sousse' => 'Sousse',
-                    'Tataouine' => 'Tataouine',
-                    'Tozeur' => 'Tozeur',
-                    'Tunis' => 'Tunis',
-                    'Zaghouan' => 'Zaghouan'
-                )))
+            ->add('gouvernorat', EntityType::class, array(
+                'class' => 'EntiteBundle\Entity\Gouvernorat',
+                'choice_label' => 'name',
+                'multiple' => false
+            ))
+//            ->add('gouvernorat',ChoiceType::class,
+//                array(
+//                'choices' => array(
+//                    'Ariana' => 'Ariana',
+//                    'Béja' => 'Beja',
+//                    'Ben Arous' => 'BenArous',
+//                    'Bizerte' => 'Bizerte',
+//                    'Gabès' => 'Gabes',
+//                    'Gafsa' => 'Gafsa',
+//                    'Jendouba' => 'Jendouba',
+//                    'Kairouan' => 'Kairouan',
+//                    'Kasserine' => 'Kasserine',
+//                    'Kébili' => 'Kebili',
+//                    'Le Kef' => 'LeKef',
+//                    'Mahdia' => 'Mahdia',
+//                    'La Manouba' => 'LaManouba',
+//                    'Médenine' => 'Medenine',
+//                    'Monastir' => 'Monastir',
+//                    'Nabeul' => 'Nabeul',
+//                    'Sfax' => 'Sfax',
+//                    'Sidi Bouzid' => 'SidiBouzid',
+//                    'Siliana' => 'Siliana',
+//                    'Sousse' => 'Sousse',
+//                    'Tataouine' => 'Tataouine',
+//                    'Tozeur' => 'Tozeur',
+//                    'Tunis' => 'Tunis',
+//                    'Zaghouan' => 'Zaghouan'
+//                )))
             ->add('type',ChoiceType::class,
                 array(
                     'choices' => array(

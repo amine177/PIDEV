@@ -49,9 +49,11 @@ list_utilisateur:
 all_Json_utilisateur:
     path:     /utilisateur/alljson
     defaults: { _controller: ProfilBundle:Utilisateur:all }
+
 all_gouvernorat:
-    path:     /gouvernorat/all
+    path:     /profile/gouvernorat/all
     defaults: { _controller: ProfilBundle:Gouvernorat:all }
+
 all_Json_gouvernorat:
     path:     /gouvernorat/alljson
     defaults: { _controller: ProfilBundle:Gouvernorat:alljson }

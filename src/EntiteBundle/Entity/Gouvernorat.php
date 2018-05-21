@@ -109,4 +109,10 @@ class Gouvernorat
     {
         return $this->villes;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 }
