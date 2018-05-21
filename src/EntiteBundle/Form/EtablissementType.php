@@ -3,7 +3,9 @@
 namespace EntiteBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use EntiteBundle\Repository\GouvernoratRepository;
 use EntiteBundle\Repository\VilleRepository;
+use ProfilBundle\Controller\GouvernoratController;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -66,6 +68,7 @@ class EtablissementType extends AbstractType
             ->add('Enregistrer',SubmitType::class)
             -> setMethod('POST');
 
+
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
@@ -83,7 +86,7 @@ class EtablissementType extends AbstractType
                     array(
                         'class' => 'EntiteBundle\Entity\Ville',
                         'multiple' => false,
-                        'choices'=>$names
+
                 ));
             }
         );
