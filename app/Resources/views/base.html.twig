@@ -62,7 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
     </div>
     <div class="w3l_header_right1">
+        {% if app.user %}
         <h2><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></h2>
+        {% endif %}
     </div>
     <div class="clearfix"> </div>
 </div>
