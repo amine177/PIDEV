@@ -52,6 +52,14 @@ class EtablissementController extends Controller
         ));
     }
 
+    public function listCafeAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $cafes=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'cafe'], ['note'=> 'DESC'], 20, 0);
+        return $this->render('@Profil/Etablissement/listCafe.html.twig', array(
+            "Cafes"=>$cafes
+        ));
+    }
     public function listAllAction()
     {
         $this->getUser();
