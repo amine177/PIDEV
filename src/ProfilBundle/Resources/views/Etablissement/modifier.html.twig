@@ -1,11 +1,21 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}ParcBundle:Modele:update{% endblock %}
+{% block title %}Bon Plan | update etab{% endblock %}
 
 {% block body %}
 <center><h1>Welcome to the Etablissement:update page</h1>
-    {{ form_start(form) }}
+    <div class="w3_login_module">
+        <div class="module form-module">
+            <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+            </div>
+            <div class="form">
+                <h2>Ajouter etablissement</h2>
+                {{ form_start(form) }}
 
-    {{ form_end(form) }}
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
 </center>
 {% endblock %}
