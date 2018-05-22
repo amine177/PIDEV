@@ -53,8 +53,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="mega-dropdown-menu">
                     <div class="w3ls_vegetables">
                         <ul class="dropdown-menu drp-mnu">
+
                             <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
-                            <li><a href="{{ path('fos_user_profile_edit') }}">Edit</a></li>
+                            {% if app.user.etablissement %}
+                            <li><a href="{{ path('modifier_etab',{'idUpdate':app.user.etablissement.id}) }}">Edit</a></li>
+                            {% endif %}
                             <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
                         </ul>
                     </div>

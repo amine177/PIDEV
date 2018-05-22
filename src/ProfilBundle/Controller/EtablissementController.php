@@ -84,16 +84,15 @@ class EtablissementController extends Controller
         $etabAModif=$em->getRepository("EntiteBundle:Etablissement")->find($idUpdate);
         $form=$this->createForm(EtablissementType::class,$etabAModif);
         $form->handleRequest($request);
-        if($form->isValid())
+        if($form->isSubmitted())
         {
             $em->flush();
-            return $this->redirectToRoute("list_etab");
+            return $this->redirectToRoute('fos_user_profile_show');
         }
-        return $this->render('@Profil/Etablissement/ajouter.html.twig', array(
-            "form"=>$form->createView()
+        return $this->render('@Profil/Etablissement/modifier.html.twig', array(
+            "form"=>$form->createView(),'etabAModif'=>$etabAModif
         ));
     }
-
     //fonction recherche avc ajax
     public function rechercheAjaxAction(Request $request)
     {

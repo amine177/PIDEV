@@ -10,4 +10,5 @@ namespace EntiteBundle\Repository;
  */
 class GouvernoratRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }
