@@ -4,14 +4,44 @@
 {% block body %}
 
         <div class="w3_login_module">
+            <a href="{{ path('modifier_etab') }}">
             <div class="module form-module">
                 <div class="toggle"><i class="fa fa-times fa-pencil"></i>
                 </div>
                 <div class="form">
                     <h2>Ajouter etablissement</h2>
                     {{ form_start(form) }}
+                        {#{{ form_row(form.gouvernorat) }}#}
+                        {#{{ form_row(form.ville) }}#}
                     {{ form_end(form) }}
+                    <script>
+                        var $gouvernorat = $('#etablissement_gouvernorat');
+                        // When gouvernorat gets selected ...
+                        $gouvernorat.change(function() {
+                            // ... retrieve the corresponding form.
+                            var $form = $(this).closest('form');
+                            // Simulate form data, but only include the selected gouvernorat value.
+                            var data = {};
+                            data[$gouvernorat.attr('name')] = $gouvernorat.val();
+                            // Submit data via AJAX to the form's action path.
+                            $.ajax({
+                                url : $form.attr('action'),
+                                type: $form.attr('method'),
+                                data : data,
+                                success: function(html) {
+                                    // Replace current ville field ...
+                                    $('#etablissement_ville').replaceWith(
+                                        // ... with the returned one from the AJAX response.
+                                        $(html).find('#etablissement_ville')
+                                    );
+                                    // Ville field now displays the appropriate Villes.
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </div>
+            </a>
         </div>
+
 {% endblock %}

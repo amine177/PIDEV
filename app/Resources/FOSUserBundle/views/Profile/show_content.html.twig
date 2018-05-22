@@ -26,21 +26,21 @@
                             </h3>
                     {% endif %}
                             {% if user.etablissement %}
-                                <h4>Type de compte :{% if user.roles[0] == 'ROLE_ETABLISSEMENT' %} ETABLISSEMENT {% endif %}</h4>
-                                <h3>Etablissement: {{ user.etablissement.nom }}</h3>
+                                <h3> {{ user.etablissement.nom }}</h3>
                             {% if (user.roles[0] == 'ROLE_ETABLISSEMENT') and user.etablissement %}
-                                <h3>Horraire: {{ user.etablissement.horraire |date('H:i:s') }}</h3>
+                                <h3>Ouverture: {{ user.etablissement.horraire |date('H:i:s') }}</h3>
+                                <h3>Fermeture: {{ user.etablissement.horrairef |date('H:i:s') }}</h3>
                             {% endif %}
                         {% endif %}</span>
                     </div>
                 </div>
                 {% if  user.etablissement  %}
-                    <div class="col-md-8">
-                        {{ render(controller(
-                            '\MapBundle\\Controller\\DefaultController::coordonnesMapAction',
-                            { 'idDetail': user.etablissement.id }
-                        )) }}
-                    </div>
+                    {#<div class="col-md-8">#}
+                        {#{{ render(controller(#}
+                            {#'\MapBundle\\Controller\\DefaultController::coordonnesMapAction',#}
+                            {#{ 'idDetail': user.etablissement.id }#}
+                        {#)) }}#}
+                    {#</div>#}
                 {% endif %}
             </div>
             {% if user.etablissement %}

@@ -3,6 +3,7 @@
 namespace EntiteBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use EntiteBundle\Entity\Gouvernorat;
 use EntiteBundle\Repository\GouvernoratRepository;
 use EntiteBundle\Repository\VilleRepository;
 use ProfilBundle\Controller\GouvernoratController;
@@ -46,6 +47,20 @@ class EtablissementType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false
             ))
+            ->add('ville',EntityType::class,
+                array(
+                    'class' => 'EntiteBundle\Entity\Ville',
+                    'choice_label' => 'name',
+                    'multiple' => false,
+
+            ))
+//            ->add('ville',EntityType::class,
+//                array(
+//                    'class' => 'EntiteBundle\Entity\Ville',
+//                    'choice_label' => 'name',
+//                    'multiple' => false,
+//
+//            ))
             ->add('type',ChoiceType::class,
                 array(
                     'choices' => array(
@@ -54,13 +69,6 @@ class EtablissementType extends AbstractType
                         'Restaurant' => 'restaurant',
                         'Shopping' => 'shopping'
                     )))
-            ->add('ville',EntityType::class,
-                array(
-                    'class' => 'EntiteBundle\Entity\Ville',
-                    'choice_label' => 'name',
-                    'multiple' => false,
-
-            ))
             ->add('horraire', TimeType::class)
             ->add('horraireF', TimeType::class)
             ->add('longitude')
@@ -68,28 +76,58 @@ class EtablissementType extends AbstractType
             ->add('Enregistrer',SubmitType::class)
             -> setMethod('POST');
 
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-                $form = $event->getForm();
-
-                $data = $event->getData();
-                $villes=array();
-                $gouv = $data-> getGouvernorat();
-                $villes = null === $gouv ? array() : $gouv->getVilles();
-                $names = array_map(function ($value) {
-                    return  $value['name'];
-                }, $villes);
-
-                $form->add('ville', EntityType::class,
-                    array(
-                        'class' => 'EntiteBundle\Entity\Ville',
-                        'multiple' => false,
-
-                ));
-            }
-        );
+//        $formModifier = function (FormInterface $form, Gouvernorat $gouvernorat = null) {
+//            $villes = null === $gouvernorat ? array() : $gouvernorat->getVilles();
+////            $names = array_map(function ($value) {
+////                return  $value['name'];
+////            }, $villes);
+//            $form->add('ville', EntityType::class, array(
+//                'class' => 'EntiteBundle\Entity\Ville',
+//                'placeholder' => '',
+//                'choices' => $villes,
+//            ));
+//        };
+//        $builder->addEventListener(
+//            FormEvents::PRE_SET_DATA,
+//            function (FormEvent $event) use ($formModifier) {
+//                // this would be your entity, i.e. SportMeetup
+//                $data = $event->getData();
+//
+//                $formModifier($event->getForm(), $data->getGouvernorat());
+//            }
+//        );
+//
+//        $builder->get('gouvernorat')->addEventListener(
+//            FormEvents::POST_SUBMIT,
+//            function (FormEvent $event) use ($formModifier) {
+//                // It's important here to fetch $event->getForm()->getData(), as
+//                // $event->getData() will get you the client data (that is, the ID)
+//                $gouv = $event->getForm()->getData();
+//
+//                // since we've added the listener to the child, we'll have to pass on
+//                // the parent to the callback functions!
+//                $formModifier($event->getForm()->getParent(), $gouv);
+//            }
+//        );
+//        $builder->addEventListener(
+//            FormEvents::PRE_SET_DATA,
+//            function (FormEvent $event) {
+//                $form = $event->getForm();
+//                $data = $event->getData();
+//                $gouv = $data-> getGouvernorat();
+//                $villes = null === $gouv ? array() : $gouv->getVilles();
+////                $names = array_map(function ($value) {
+////                    return  $value['name'];
+////                }, $villes);
+//
+//                $form->add('ville', EntityType::class,
+//                    array(
+//                        'class' => 'EntiteBundle\Entity\Ville',
+//                        'placeholder' => '',
+//                        'choices' => $villes
+//                ));
+//            }
+//        );
     }/**
      * {@inheritdoc}
      */
