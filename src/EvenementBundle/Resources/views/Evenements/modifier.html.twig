@@ -1,11 +1,26 @@
-{% extends "::base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}EvenementBundle:Evenements:modifier{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Evenements:modifier page</h1>
+    <div class="w3_login_module" id="kk">
+    <div class="module form-module">
+        <div class="toggle">
 
-    {{ form_start(form) }}
+        </div>
+        <div class="form" >
+            {{ form_start(form) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.adresse) }}
 
-    {{ form_end(form) }}
-{% endblock %}
+            {{ form_row(form.description) }}
+            {{ form_row(form.date) }}
+            <br>
+            {{ form_row(form.brochure) }}
+            <br>
+            {{ form_row(form.Sauvgarder) }}
+            {{ form_end(form)}}
+        </div>
+    </div>
+
+
+{% endblock body %}

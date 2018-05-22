@@ -63,7 +63,9 @@ class Evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="dateF", type="string")
+
+     * @ORM\Column(name="dateF", type="string" , length=255)
+
      */
     private $dateF;
 
@@ -105,11 +107,13 @@ class Evenements
      * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=true)
      */
     private $utilisateur;
+
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=250, nullable=false)
      */
+
     private $type;
     /**
      * Get id

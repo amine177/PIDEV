@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="special_items">
                 <li><a href="{{ path('list_etab') }}">Etablissements</a><i>/</i></li>
                 <li><a href="#">About Us</a><i>/</i></li>
-                <li><a href="{{ path('evenement_homepage') }}">Evenement</a><i>/</i></li>
+                <li><a href="{{ path('aff') }}">Evenements</a><i>/</i></li>
                 <li><a href="{{ path('blog_listeArticles') }}">Blog</a></li>
             </ul>
         </div>
@@ -138,15 +138,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogues<span class="caret"></span></a>
+                    <li class="dropdown mega-dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mes Evenements<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                             <div class="w3ls_vegetables">
                                 <ul>
-                                    <li><a href="drinks.html">Catalogue1</a></li>
-                                    <li><a href="drinks.html">Catalogue2</a></li>
-                                    <li><a href="drinks.html">Catalogue3</a></li>
-                                    <li><a href="drinks.html">Catalogue4</a></li>
+                                    <li><a href="{{ path('ajout') }}">Ajout Evenement</a></li>
+                                    <li><a href="{{ path('event') }}">Mes Evenements</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -155,7 +153,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div><!-- /.navbar-collapse -->
         </nav>
     </div>
-    <div class="container" id="searchResult">
+
+
+
+
+
+
 
         {% block body %}
             {# <div class="w3l_banner_nav_right">
@@ -205,9 +208,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  <!-- //flexSlider -->
              </div>#}
         {% endblock %}
+
     </div>
     <div class="clearfix"></div>
-</div>
+
 <!-- footer -->
 <div class="footer">
     <div class="container">
@@ -271,6 +275,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 $(this).toggleClass('open');
             }
         );
+    });
+</script>
+<link rel="stylesheet" href="{{ asset('css/flexslider.css') }}" type="text/css" media="screen" property="" />
+<script defer src="{{ asset('js/jquery.flexslider.js') }}"></script>
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider){
+                $('body').removeClass('loading');
+            }
+        });
     });
 </script>
 <!-- here stars scrolling icon -->
