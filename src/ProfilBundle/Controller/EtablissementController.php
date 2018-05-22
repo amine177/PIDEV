@@ -84,8 +84,14 @@ class EtablissementController extends Controller
         $etabAModif=$em->getRepository("EntiteBundle:Etablissement")->find($idUpdate);
         $form=$this->createForm(EtablissementType::class,$etabAModif);
         $form->handleRequest($request);
+
         if($form->isSubmitted())
         {
+            $file=$etabAModif->getPhoto();
+            $fileName= md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('image_directory'),$fileName);
+            $etabAModif->setPhoto($fileName);
+            $em=$this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('fos_user_profile_show');
         }
