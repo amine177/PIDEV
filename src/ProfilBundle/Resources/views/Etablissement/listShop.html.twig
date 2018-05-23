@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="w3l_banner_nav_right">
+         <!-- //flexSlider -->
+        <div class="w3ls_w3l_banner_nav_right_grid">
+            <h3><a href="{{ path('best_etab') }}">Recommandation</a></h3>
+            {% if Shops | length > 0 %}
+                <div class="w3ls_w3l_banner_nav_right_grid1">
+                    <h6>Café</h6>
+                    {% for shopping in Shops %}
+                        <div class="col-md-3 w3ls_w3l_banner_left">
+                            <div class="hover14 column">
+                                <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+                                    <div class="agile_top_brand_left_grid_pos">
+                                        <p style="z-index: 22000; position: absolute;">{% if shopping.horraire |date('H:i:s') < "now" |date('H:i:s') and shopping.horraireF |date('H:i:s') > "now" |date('H:i:s') %} <i class="badge badge-success">Ouvert</i> {% else %}<i class="badge badge-danger">Fermé</i>{% endif %}</p>
+                                    </div>
+                                    <div class="agile_top_brand_left_grid1">
+                                        <figure>
+                                            <div class="snipcart-item block">
+                                                <div class="snipcart-thumb">
+                                                    {% if shopping.photo %}
+                                                        <a href="#"><img src="{{ asset('bundles/blog/template/images/'~ shopping.photo ) }}" alt=" "
+                                                                         class="img-responsive"/></a>
+                                                    {% else %}
+                                                        <a href="#"><img src="{{ asset('images/shopping_ini.png') }}" alt=" "
+                                                                         class="img-responsive"/></a>
+                                                    {% endif %}
+                                                    <h2 class="text-center">{{ shopping.nom }}</h2>
+                                                    {% if shopping.note %}
+                                                        <h2 class="text-center text-success">{{ shopping.note }}</h2><br>
+                                                    {% endif %}
+                                                    <p class="text-center">{% if shopping.horraire |date('H:i:s') %} <i class="badge">{{  shopping.horraire |date('H:i:s') }} </i> {% endif %}</p>
+                                                    <p class="text-center">{% if shopping.horraireF |date('H:i:s') %} <i class="badge">{{  shopping.horraireF |date('H:i:s') }} </i> {% endif %}</p>
+                                                </div>
+                                                <div class="snipcart-details">
+                                                    <form action="#" method="post">
+                                                        <fieldset>
+                                                            <input type="submit" name="submit" value="Détails"
+                                                                   class="button"/>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

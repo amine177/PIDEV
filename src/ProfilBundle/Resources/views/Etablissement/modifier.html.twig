@@ -3,15 +3,15 @@
 {% block title %}Bon Plan | update etab{% endblock %}
 
 {% block body %}
-<center><h1>Welcome to the Etablissement:update page</h1>
     <div class="w3_login_module">
         <div class="module form-module">
             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
             </div>
             <div class="form">
-                <h2>Ajouter etablissement</h2>
+                <h2>Modifier etablissement</h2>
                 {{ form_start(form) }}
-
+                {#{{ form_row(form.nom, { 'value': etabAModif.nom })  }}#}
+                {{ form_row(form.gouvernorat) }}
                 {{ form_end(form) }}
 
             </div>

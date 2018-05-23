@@ -34,7 +34,7 @@ class Evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="tel", type="string", length=255)
+     * @ORM\Column(name="tel", type="string", length=255, nullable=true)
      */
 
     private $tel;
@@ -64,7 +64,7 @@ class Evenements
      * @var string
      *
 
-     * @ORM\Column(name="dateF", type="string" , length=255)
+     * @ORM\Column(name="dateF", type="string" , length=255, nullable=true)
 
      */
     private $dateF;
@@ -72,21 +72,21 @@ class Evenements
     /**
      * @var int
      *
-     * @ORM\Column(name="nb_place", type="integer")
+     * @ORM\Column(name="nb_place", type="integer", nullable=true)
      */
     private $nbPlace;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lieu", type="string", length=255)
+     * @ORM\Column(name="lieu", type="string", length=255, nullable=true)
      */
     private $lieu;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="integer", nullable=true)
      */
     private $prix;
 
@@ -111,7 +111,7 @@ class Evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=250, nullable=false)
+     * @ORM\Column(name="type", type="string", length=250, nullable=true)
      */
 
     private $type;

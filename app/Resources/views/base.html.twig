@@ -53,8 +53,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="mega-dropdown-menu">
                     <div class="w3ls_vegetables">
                         <ul class="dropdown-menu drp-mnu">
+
                             <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
-                            <li><a href="{{ path('fos_user_profile_edit') }}">Edit</a></li>
+                            {% if app.user.etablissement %}
+                            <li><a href="{{ path('modifier_etab',{'idUpdate':app.user.etablissement.id}) }}">Edit</a></li>
+                            {% endif %}
                             <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
                         </ul>
                     </div>
@@ -124,16 +127,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav nav_1">
-                    <li><a href="{{ path('list_etab') }}">Etablissement</a></li>
                     <li class="dropdown mega-dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Etablissement<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Etablissements<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                             <div class="w3ls_vegetables">
                                 <ul>
-                                    <li><a href="vegetables.html">Café</a></li>
-                                    <li><a href="vegetables.html">Restautrant</a></li>
-                                    <li><a href="vegetables.html">Loisirs</a></li>
-                                    <li><a href="vegetables.html">Shopping</a></li>
+                                    <li><a href="{{ path('cafe_etab') }}">Cafés</a></li>
+                                    <li><a href="{{ path('rest_etab') }}">Restautrants</a></li>
+                                    <li><a href="{{ path('loisir_etab') }}">Loisirs</a></li>
+                                    <li><a href="{{ path('shop_etab') }}">Shopping</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -337,7 +339,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var minlength = 1;
         var that = this;
         var input = $(this).val();
-        $('#searchResult').append("")
+        $('#SearchResult').append("")
         if (input.length >= minlength ) {
             if (searchRequest != null)
                 searchRequest.abort();
@@ -353,14 +355,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     //console.log(data);
                     $.each(data, function (i, e) {
                         /*console.log(e);  */
-                        $('#searchResult').html("<h2 class='list-group-item-danger'>" + e.nom + "</h2>");
+                        $('#SearchResult').html("<h2 class='list-group-item-danger'>" + e.nom + "</h2>");
                     })
                 }
             })
-
         }
     });
-
 </script>
 </body>
 </html>
