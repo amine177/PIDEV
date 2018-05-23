@@ -6,10 +6,14 @@ list_etab:
     defaults: { _controller: ProfilBundle:Etablissement:listAll }
 best_etab:
     path:     /
-    defaults: { _controller: ProfilBundle:Etablissement:list }
+    defaults: { _controller: ProfilBundle:Etablissement:all }
 cafe_etab:
-    path:     /
+    path:     /cafes
     defaults: { _controller: ProfilBundle:Etablissement:listCafe }
+
+loisir_etab:
+    path:     /loisirs
+    defaults: { _controller: ProfilBundle:Etablissement:listLoisir }
 supprimer_etab:
     path:     /etablissement/supprimer/{idDelete}
     defaults: { _controller: ProfilBundle:Etablissement:supprimer }

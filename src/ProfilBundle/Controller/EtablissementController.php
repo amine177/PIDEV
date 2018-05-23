@@ -37,7 +37,7 @@ class EtablissementController extends Controller
             'form'=>$form->createView()
         ));
     }
-    public function listAction()
+    public function allAction()
     {
         $em= $this->getDoctrine()->getManager();
         $etablissementsCafee=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'cafe'], ['note'=> 'DESC'], 4, 0);
@@ -60,9 +60,16 @@ class EtablissementController extends Controller
             "Cafes"=>$cafes
         ));
     }
+    public function listLoisirAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $cafes=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'loisirs'], ['note'=> 'DESC'], 20, 0);
+        return $this->render('@Profil/Etablissement/listLoisirs.html.twig', array(
+            "Loisirs"=>$cafes
+        ));
+    }
     public function listAllAction()
     {
-        $this->getUser();
         $em= $this->getDoctrine()->getManager();
         $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll(['note'=> 'DESC']);
         return $this->render('@Profil/Etablissement/all.html.twig', array(
@@ -70,7 +77,7 @@ class EtablissementController extends Controller
         ));
     }
 
-    public function listBestAction()
+    public function listAction()
     {
         $em= $this->getDoctrine()->getManager();
         $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll(['note'=> 'DESC'], null, 10, 0);

@@ -10,13 +10,17 @@
                             <div class="hover14 column">
                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                     <div class="agile_top_brand_left_grid_pos">
-                                        <img src="{{ asset('images/bandb.jpg') }}" alt=" " class="img-responsive"/>
+                                        {% if etablissement.photo %}
+                                        <img src="{{ asset('bundles/blog/template/images/'~ etablissement.photo ) }}" alt=" " class="img-responsive"/>
+                                        {% else %}
+                                            <img src="{{ asset('images/etab-defaut.jpg' ) }}" alt=" " class="img-responsive"/>
+                                        {% endif %}
                                     </div>
                                     <div class="agile_top_brand_left_grid1">
                                         <figure>
                                             <div class="snipcart-item block">
                                                 <div class="snipcart-thumb">
-                                                    <a href="single.html"><img src="{{ asset('images/5.png') }}" alt=" "
+                                                    <a href="single.html"><img src="" alt=" "
                                                                                class="img-responsive"/></a>
                                                     <p>{{ etablissement.nom }}</p>
                                                     <h4>$3.00 <span>$5.00</span></h4>
