@@ -10,7 +10,12 @@ best_etab:
 cafe_etab:
     path:     /cafes
     defaults: { _controller: ProfilBundle:Etablissement:listCafe }
-
+shop_etab:
+    path:     /shops
+    defaults: { _controller: ProfilBundle:Etablissement:listShop }
+rest_etab:
+    path:     /restaurants
+    defaults: { _controller: ProfilBundle:Etablissement:listRestaurant }
 loisir_etab:
     path:     /loisirs
     defaults: { _controller: ProfilBundle:Etablissement:listLoisir }

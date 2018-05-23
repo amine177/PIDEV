@@ -68,6 +68,22 @@ class EtablissementController extends Controller
             "Loisirs"=>$cafes
         ));
     }
+    public function listRestaurantAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $restos=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'restaurant'], ['note'=> 'DESC'], 20, 0);
+        return $this->render('@Profil/Etablissement/listRest.html.twig', array(
+            "Restaurants"=>$restos
+        ));
+    }
+    public function listShopAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $shops=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'shopping'], ['note'=> 'DESC'], 20, 0);
+        return $this->render('@Profil/Etablissement/listShop.html.twig', array(
+            "Shops"=>$shops
+        ));
+    }
     public function listAllAction()
     {
         $em= $this->getDoctrine()->getManager();
