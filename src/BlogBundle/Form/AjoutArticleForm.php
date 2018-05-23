@@ -13,7 +13,7 @@ class AjoutArticleForm extends AbstractType
     {
         $builder
             ->add('texte', TextareaType::class, array(
-                'attr' => array('class' => 'tinymce', 'required' => false),
+                'attr' => array('class' => 'tinymce', 'required' => true),
             ))
             ->add('publier', SubmitType::class);
 
