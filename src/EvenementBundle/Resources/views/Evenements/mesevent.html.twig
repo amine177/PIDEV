@@ -26,11 +26,10 @@
                         </div>
 
                         <div class="col-md-8 events_bottom_left2">
-                            <img src="{{ asset('template/images/' ~ i.brochure) }}" alt=" " class="img-responsive" />
+                            <img src="{{ asset('bundles/blog/template/images/' ~ i.brochure) }}" alt=" " class="img-responsive" />
                             <h4>{{ i.nom }}</h4>
                             <ul>
                                 <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{ i.date|date('d-m-y') }}</li>
-                                <li><i class="fa fa-user" aria-hidden="true"></i><a href="#">Admin</a></li>
                             </ul>
                             <p>{{ i.description }}.</p>
                         </div>

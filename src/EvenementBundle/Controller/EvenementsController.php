@@ -31,7 +31,7 @@ class EvenementsController extends Controller
             $fileName= md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('image_directory'),$fileName);
             $ev->setBrochure($fileName);
-
+            $ev->setDateF($ev->getDate()->format('y-m-d')) ;
 
 
             $em=$this->getDoctrine()->getManager();
@@ -62,6 +62,10 @@ class EvenementsController extends Controller
             $fileName= md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('image_directory'),$fileName);
             $evenement->setBrochure($fileName);
+            $user =$this->getUser();
+            $evenement->setUtilisateur($user);
+
+
             $em=$this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
@@ -112,10 +116,11 @@ class EvenementsController extends Controller
 
 
     //detail d'un événements n°
-    public function detailAction($id,Request $request){
+    public function detailAction($id){
 
         $em=$this->getDoctrine()->getManager();
         $ev=$em->getRepository(Evenements::class)->find($id);
+
 
 
 
@@ -130,5 +135,35 @@ class EvenementsController extends Controller
 
         ));
     }
+
+    public function VoteAction(Request $r){
+
+
+
+        $em=$this->getDoctrine()->getManager();
+        $ev=$em->getRepository(Evenements::class)->find($r->get('id'));
+
+           $t= $ev->getNbPlace();
+           $re=$r->get('rating');
+        $ev->setNbPlace($t+$re);
+            $em->persist($ev);
+            $em->flush();
+
+
+        return $this->redirectToRoute('aff');
+
+
+    }
+
+    public function bestAction(){
+
+        $em=$this->getDoctrine()->getManager();
+        $e=$em->getRepository(Evenements::class)->findbest();
+        return $this->render('EvenementBundle:Evenements:affiche.html.twig', array(
+            'evenements'=>$e
+        ));
+    }
+
+
 
 }

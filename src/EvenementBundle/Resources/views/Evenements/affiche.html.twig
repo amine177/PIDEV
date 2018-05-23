@@ -9,25 +9,18 @@
     <section class="slider">
         <div class="flexslider">
             <ul class="slides">
-                <li>
-                    <div class="w3l_banner_nav_right_banner">
-                        <h3>Make your <span>food</span> with Spicy.</h3>
-                        <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w3l_banner_nav_right_banner1" style="background:url({{ asset('images/2.jpg') }}) no-repeat 0px 0px;">
-                        <h3>Make your <span>food</span> with Spicy.</h3>
-                        <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
 
+                {% for j in evenements %}
+                <li>
+                    <div class="w3l_banner_nav_right_banner1" style="background:url({{  asset('bundles/blog/template/images/' ~ j.brochure) }}) no-repeat 0px 0px;">
+                        <h3>Make your <span>food</span> with Spicy.</h3>
+                        <div class="more">
+                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                        </div>
+                    </div>
                 </li>
+                {% endfor %}
+
             </ul>
         </div>
     </section>
@@ -44,15 +37,15 @@
                 <div class="col-md-6 events_bottom_left" id="kk">
                     <div class="col-md-4 events_bottom_left1">
                         <div class="events_bottom_left1_grid">
-                            <h4>{{ i.prix }}</h4>
-                            <p>Details</p>
+                            <h4>{{ i.type }}</h4>
+                            <p>{{ i.prix }} D </p>
                         </div>
                     </div>
                     <div class="col-md-8 events_bottom_left2">
-                        <img src="{{ asset('template/images/' ~ i.brochure) }}" alt=" " class="img-responsive" />
+                        <img src="{{ asset('bundles/blog/template/images/' ~ i.brochure) }}" alt=" " class="img-responsive" />
                         <h4>{{ i.nom }}</h4>
                         <ul>
-                            <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{ i.date|date('d-m-y') }}</li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{ i.dateF }}</li>
                             <li><i class="fa fa-paperclip" aria-hidden="true"></i><a href="{{ path('detail', {'id': i.id}) }}">Détail Evene...</a></li>
                         </ul>
                         <p>{{ i.description }}.</p>

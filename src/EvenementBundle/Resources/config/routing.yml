@@ -33,9 +33,9 @@ _ajout:
     path:     /Ajout
     defaults: { _controller: EvenementBundle:CommentaireE:Ajout }
 
-_supprimer:
-    path:     /Supprimer/{id}/{ide}
-    defaults: { _controller: EvenementBundle:CommentaireE:Supprimer }
+Vote:
+    path:     /Vote
+    defaults: { _controller: EvenementBundle:Evenements:Vote }
 
 _modifier:
     path:     /Modifier/{id}/{ide}

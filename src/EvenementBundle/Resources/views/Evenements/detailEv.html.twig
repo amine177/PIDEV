@@ -7,9 +7,10 @@
             <div class="agileinfo_single">
                 <h5>{{ detail.nom}}</h5>
                 <div class="col-md-4 agileinfo_single_left">
-                    <img id="example" src="{{ asset('template/images/' ~ detail.brochure) }}" alt=" " class="img-responsive" />
+                    <img id="example" src="{{ asset('bundles/blog/template/images/' ~ detail.brochure) }}" alt=" " class="img-responsive" />
                 </div>
                 <div class="col-md-8 agileinfo_single_right">
+                    <form method="post" action="{{ path('Vote') }}">
                     <div class="rating1">
 						<span class="starRating">
 							<input id="rating5" type="radio" name="rating" value="5">
@@ -24,9 +25,12 @@
 							<label for="rating1">1</label>
 						</span>
                     </div>
+                        <input type="hidden" name="id" value="{{ detail.id }}"/>
+                        <input type="submit" value="Votez"/>
+                    </form>
                     <div class="w3agile_description">
                         Adresse : {{ detail.adresse }} <br> <br>
-                        Date : {{  detail.date   }}
+                        Date : {{  detail.dateF   }} <br> <br>
                         Description : <p> {{ detail.description }}</p>
 
 
@@ -34,13 +38,10 @@
                     </div>
                     <div class="snipcart-item block">
                         <div class="snipcart-thumb agileinfo_single_right_snipcart">
-                            <h4>{{ detail.prix }}</h4>
+                            <h4>Prix : {{ detail.prix }} D</h4>
                         </div>
                         <div class="snipcart-details agileinfo_single_right_details">
-                            <form action="#" method="post">
-                                <fieldset>
 
-                                    <input type="submit" name="submit" value="Participer !" class="button" />
                                 </fieldset>
                             </form>
                         </div>
