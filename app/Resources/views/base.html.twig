@@ -339,7 +339,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var minlength = 1;
         var that = this;
         var input = $(this).val();
-        $('#searchResult').append("")
+        $('#SearchResult').append("")
         if (input.length >= minlength ) {
             if (searchRequest != null)
                 searchRequest.abort();
@@ -355,14 +355,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     //console.log(data);
                     $.each(data, function (i, e) {
                         /*console.log(e);  */
-                        $('#searchResult').html("<h2 class='list-group-item-danger'>" + e.nom + "</h2>");
+                        $('#SearchResult').html("<h2 class='list-group-item-danger'>" + e.nom + "</h2>");
                     })
                 }
             })
-
         }
     });
-
 </script>
 </body>
 </html>

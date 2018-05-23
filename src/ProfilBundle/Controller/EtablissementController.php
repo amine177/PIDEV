@@ -135,18 +135,17 @@ class EtablissementController extends Controller
     {
         if($request->isXmlHttpRequest())
         {
-            $marque=$request->get('q');
+            $nometab=$request->get('q');
             $em= $this->getDoctrine()->getManager();
-            try {
-                $etablissements = $em->getRepository("EntiteBundle:Etablissement")->searchByName($marque);
-            } catch (ORMException $e) {
-            }
-            //etape 1: initialiser le serializer
-            $serializer=new Serializer(array(new ObjectNormalizer()));
+                $etablissements = $em->getRepository("EntiteBundle:Etablissement")->rechercheNom($nometab);
+                        //etape 1: initialiser le serializer
+            //$serializer=new Serializer(array(new ObjectNormalizer()));
             //etape 2 : transformation liste des objets
-            $data=$serializer->normalize($etablissements);
+            //$data=$serializer->normalize($etablissements);
             //etape 3 : encodage format JSON
-            return new JsonResponse($data);
+            $this->render('ProfilBundle:Etablissement:all.html.twig', array(
+                "etablissements"=>$etablissements
+            ));
         }
         return $this->render('ProfilBundle:Etablissement:all.html.twig', array(
 
