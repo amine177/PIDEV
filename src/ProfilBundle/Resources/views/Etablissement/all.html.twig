@@ -5,40 +5,26 @@
         <div class="w3ls_w3l_banner_nav_right_grid">
             <h3>Etablissements</h3>
                 <div class="w3ls_w3l_banner_nav_right_grid1">
-                    {% for etablissement in etablissements %}
+                    {% for etablissement in  etablissements  %}
                         <div class="col-md-3 w3ls_w3l_banner_left">
                             <div class="hover14 column">
                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                     <div class="agile_top_brand_left_grid_pos">
-                                        {% if etablissement.photo %}
-                                        <img src="{{ asset('bundles/blog/template/images/'~ etablissement.photo ) }}" alt=" " class="img-responsive"/>
-                                        {% else %}
-                                            <img src="{{ asset('images/etab-defaut.jpg' ) }}" alt=" " class="img-responsive"/>
-                                        {% endif %}
+                                        <p style="z-index: 22000; position: absolute;">{% if etablissement.horraire |date('h:i:s') < "now" |date('h:i:s') %} <i class="badge badge-success">Ouvert</i> {% else %}<i class="badge badge-danger">Fermé</i>{% endif %}</p>
                                     </div>
                                     <div class="agile_top_brand_left_grid1">
                                         <figure>
                                             <div class="snipcart-item block">
                                                 <div class="snipcart-thumb">
-                                                    <a href="single.html"><img src="" alt=" "
-                                                                               class="img-responsive"/></a>
-                                                    <p>{{ etablissement.nom }}</p>
-                                                    <h4>$3.00 <span>$5.00</span></h4>
+                                                    <a href="#"><img src="{{ asset('images/bandb.jpg') }}" alt=" "
+                                                                     class="img-responsive"/></a>
+                                                    <h2 class="text-center">{{ etablissement.nom }}</h2>
+                                                    <p class="text-center">{% if etablissement.horraire |date('h:i:s') %} <i class="badge">{{  etablissement.horraire |date('h:i:s') }} </i> {% endif %}</p>
                                                 </div>
                                                 <div class="snipcart-details">
                                                     <form action="#" method="post">
                                                         <fieldset>
-                                                            <input type="hidden" name="cmd" value="_cart"/>
-                                                            <input type="hidden" name="add" value="1"/>
-                                                            <input type="hidden" name="business" value=" "/>
-                                                            <input type="hidden" name="item_name"
-                                                                   value="knorr instant soup"/>
-                                                            <input type="hidden" name="amount" value="3.00"/>
-                                                            <input type="hidden" name="discount_amount" value="1.00"/>
-                                                            <input type="hidden" name="currency_code" value="USD"/>
-                                                            <input type="hidden" name="return" value=" "/>
-                                                            <input type="hidden" name="cancel_return" value=" "/>
-                                                            <input type="submit" name="submit" value="Add to cart"
+                                                            <input type="submit" name="submit" value="Détails"
                                                                    class="button"/>
                                                         </fieldset>
                                                     </form>
