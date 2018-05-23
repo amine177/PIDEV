@@ -42,7 +42,7 @@ class Evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=250 , nullable=true)
      */
     private $nom;
 
