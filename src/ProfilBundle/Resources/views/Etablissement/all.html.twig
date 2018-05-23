@@ -10,7 +10,7 @@
                             <div class="hover14 column">
                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                     <div class="agile_top_brand_left_grid_pos">
-                                        <p style="z-index: 22000; position: absolute;">{% if etablissement.horraire |date('h:i:s') < "now" |date('h:i:s') and etablissement.horraireF |date('h:i:s') > "now" |date('h:i:s') %} <i class="badge badge-success">Ouvert</i> {% else %}<i class="badge badge-danger">Fermé</i>{% endif %}</p>
+                                        <p style="z-index: 22000; position: absolute;">{% if etablissement.horraire |date('H:i:s') < "now" |date('H:i:s') and etablissement.horraireF |date('H:i:s') > "now" |date('H:i:s') %} <i class="badge badge-success">Ouvert</i> {% else %}<i class="badge badge-danger">Fermé</i>{% endif %}</p>
                                     </div>
                                     <div class="agile_top_brand_left_grid1">
                                         <figure>
@@ -41,8 +41,8 @@
                                                     {% if etablissement.note %}
                                                         <h2 class="text-center text-success">{{ etablissement.note }}</h2><br>
                                                     {% endif %}
-                                                    <p class="text-center">{% if etablissement.horraire |date('h:i:s') %} <i class="badge">{{  etablissement.horraire |date('h:i:s') }} </i> {% endif %}</p>
-                                                    <p class="text-center">{% if etablissement.horraireF |date('h:i:s') %} <i class="badge">{{  etablissement.horraireF |date('h:i:s') }} </i> {% endif %}</p>
+                                                    <p class="text-center">{% if etablissement.horraire |date('H:i:s') %} <i class="badge">{{  etablissement.horraire |date('H:i:s') }} </i> {% endif %}</p>
+                                                    <p class="text-center">{% if etablissement.horraireF |date('H:i:s') %} <i class="badge">{{  etablissement.horraireF |date('H:i:s') }} </i> {% endif %}</p>
                                                 </div>
                                                 <div class="snipcart-details">
                                                     <form action="#" method="post">
