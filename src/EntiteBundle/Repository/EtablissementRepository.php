@@ -14,8 +14,15 @@ class EtablissementRepository extends \Doctrine\ORM\EntityRepository
     {
         $q=$this->getEntityManager()->createQuery("select et from EntiteBundle:Etablissement et where 
             et.nom LIKE :nom")
-            ->setParameter('nom',$nom);
+            ->setParameter('nom','%'.$nom.'%');
         return $q->getResult();
 
+    }
+
+    public function findDQLPaysParametre($etab){
+        $q=$this->getEntityManager()
+            ->createQuery("select et from EntiteBundle:Etablissement et WHERE et.nom=::etab ")
+            ->setParameter("etab",$etab);
+        return $q->getResult();
     }
 }

@@ -61,7 +61,9 @@ list_utilisateur:
 all_Json_utilisateur:
     path:     /utilisateur/alljson
     defaults: { _controller: ProfilBundle:Utilisateur:all }
-
+search_etab_param:
+    path:     /etablissement/searchDQL/{etab}
+    defaults: { _controller: ParcBundle:Modele:rechercheDQLParametre }
 all_gouvernorat:
     path:     /gouvernorat/all
     defaults: { _controller: ProfilBundle:Gouvernorat:all }
@@ -76,5 +78,5 @@ alljson_etab:
     path:     /etablissement/alljson
     defaults: { _controller: ProfilBundle:Etablissement:alljson }
 search_etab:
-    path:     /profile/etablissement/search
+    path:     /search
     defaults: { _controller: ProfilBundle:Etablissement:rechercheAjax }

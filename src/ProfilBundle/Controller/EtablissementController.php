@@ -139,15 +139,25 @@ class EtablissementController extends Controller
             $em= $this->getDoctrine()->getManager();
                 $etablissements = $em->getRepository("EntiteBundle:Etablissement")->rechercheNom($nometab);
                         //etape 1: initialiser le serializer
-            //$serializer=new Serializer(array(new ObjectNormalizer()));
+            $serializer=new Serializer(array(new ObjectNormalizer()));
             //etape 2 : transformation liste des objets
-            //$data=$serializer->normalize($etablissements);
+            $data=$serializer->normalize($etablissements);
             //etape 3 : encodage format JSON
-            $this->render('ProfilBundle:Etablissement:all.html.twig', array(
-                "etablissements"=>$etablissements
-            ));
+            return new JsonResponse($data);
         }
         return $this->render('ProfilBundle:Etablissement:all.html.twig', array(
+
+        ));
+    }
+    public function rechercheDQLParametreAction($etab)
+    {
+        $em = $this->getDoctrine();
+        try {
+            $etabs = $em->getRepository('EntiteBundle:Etablissement')->findDQLEtabParametre($etab);
+        } catch (ORMException $e) {
+        }
+        return $this->render('@Profil/Etablissement/all.html.twig', array(
+            'etablissements' => $etabs
 
         ));
     }

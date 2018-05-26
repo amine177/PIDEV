@@ -4,7 +4,7 @@
     <div class="w3l_banner_nav_right">
         <div class="w3ls_w3l_banner_nav_right_grid">
             <h3>Etablissements</h3>
-                <div class="w3ls_w3l_banner_nav_right_grid1">
+                <div class="w3ls_w3l_banner_nav_right_grid1" width="80" height="200">
                     {% for etablissement in  etablissements  %}
                         <div class="col-md-3 w3ls_w3l_banner_left">
                             <div class="hover14 column">
@@ -17,23 +17,23 @@
                                             <div class="snipcart-item block">
                                                 <div class="snipcart-thumb">
                                                     {% if etablissement.photo %}
-                                                        <a href="#"><img src="{{ asset('bundles/blog/template/images/'~ etablissement.photo )  }}" alt=" "
+                                                        <a href="#"><img src="{{ asset('bundles/blog/template/images/'~ etablissement.photo )  }}" width="160" height="160" alt=" "
                                                                          class="img-responsive"/></a>
                                                     {% else %}
                                                         {% if etablissement.type =="cafe" %}
-                                                        <a href="#"><img src="{{ asset('images/cafe_ini.jpg') }}" alt=" "
+                                                        <a href="#"><img src="{{ asset('images/cafe_ini.jpg') }}" width="160" height="160" alt=" "
                                                                          class="img-responsive"/></a>
                                                             {% endif %}
                                                         {% if etablissement.type =="shopping" %}
-                                                            <a href="#"><img src="{{ asset('images/shopping_ini.png') }}" alt=" "
+                                                            <a href="#"><img src="{{ asset('images/shopping_ini.png') }}" width="160" height="160" alt=" "
                                                                              class="img-responsive"/></a>
                                                         {% endif %}
                                                         {% if etablissement.type =="restaurant" %}
-                                                            <a href="#"><img src="{{ asset('images/restaurant_ini.jpg') }}" alt=" "
+                                                            <a href="#"><img src="{{ asset('images/restaurant_ini.jpg') }}" width="160" height="160" alt=" "
                                                                              class="img-responsive"/></a>
                                                         {% endif %}
                                                         {% if etablissement.type =="loisirs" %}
-                                                            <a href="#"><img src="{{ asset('images/loisir_ini.jpg') }}" alt=" "
+                                                            <a href="#"><img src="{{ asset('images/loisir_ini.jpg') }}" width="160" height="160" alt=" "
                                                                              class="img-responsive"/></a>
                                                         {% endif %}
                                                     {% endif %}
